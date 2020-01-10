@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    static class Field
+    class Field
     {
         private const int width = 60;
         private const int height = 29;
 
-        public static int Width { get { return width; } }
-        public static int Heigth { get { return height; } }
+        public int Width { get { return width; } }
+        public int Heigth { get { return height; } }
 
-        public static void CreateField()
+        public void CreateField()
         {
             for (int i = 0; i < height; i++)
             {
@@ -34,7 +34,7 @@ namespace Snake
             Console.SetCursorPosition(width + 5, 0);
             Console.WriteLine("Rules: If snake has stopped, press any button");
         }
-        public static Point GenerateEat()
+        public Point GenerateEat()
         {
             Random randomEat = new Random();
             Point eatPoint = new Point();

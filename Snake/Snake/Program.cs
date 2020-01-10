@@ -7,6 +7,7 @@ namespace Snake
     {
         static void Main(string[] args)
         {
+             
             Field.CreateField();
             Snake.CreateSnake();
             Snake.Side = "left";

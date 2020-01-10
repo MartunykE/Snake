@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    
-    static class Snake
-    {
-        public static string Side { get; set; }
 
-        public static List<Point> snakeBody = new List<Point>();
-        public static void AddPart(Point eatPoint)
+    class Snake
+    {
+        public string Side { get; set; }
+
+        public List<Point> snakeBody = new List<Point>();
+        public void AddPart(Point eatPoint)
         {
-            Point part = new Point();            
+            Point part = new Point();
             switch (Side)
             {
                 case "left":
@@ -44,7 +44,7 @@ namespace Snake
             }
             snakeBody.Add(part);
         }
-        public static void CreateSnake()
+        public void CreateSnake()
         {
             Point startPoint = new Point();
             startPoint.X = 30;
@@ -53,7 +53,7 @@ namespace Snake
             Print();
         }
 
-        public static void Move(object side)
+        public void Move(object side)
         {
             // move body
             for (int i = snakeBody.Count - 1; i > 0; i--)

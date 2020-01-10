@@ -7,27 +7,27 @@ using System.Timers;
 
 namespace Snake
 {
-    static class Game
+    class Game
     {
-        private static Timer timer;
-        private static int startSpeed = 200;
-        private static int speedUp = 30;
-        private static int speedUpPoint = 4;
-        private static Point eatPoint = new Point();
-        private static bool firstStart = true;
-        public static bool Crashed { get; set; } = false;
-        public static bool CanPressButton { get; set; } = true;
-        
-        
+        private Timer timer;
+        private int startSpeed = 200;
+        private int speedUp = 30;
+        private int speedUpPoint = 4;
+        private Point eatPoint = new Point();
+        private bool firstStart = true;
+        public bool Crashed { get; set; } = false;
+        public bool CanPressButton { get; set; } = true;
 
-        public  вфывфы void StartGame()
+
+
+        public void StartGame()
         {
-            timer = new Timer(startSpeed);            
+            timer = new Timer(startSpeed);
             timer.Elapsed += TimerTick;
             timer.Enabled = true;
         }
 
-        private  void TimerTick(object source, ElapsedEventArgs e)
+        private void TimerTick(object source, ElapsedEventArgs e)
         {
             if (firstStart)
             {
@@ -36,7 +36,7 @@ namespace Snake
             }
             if (Snake.snakeBody.Count > speedUpPoint && (startSpeed - speedUp) > 0)
             {
-                
+
                 timer.Interval = startSpeed - speedUp;
                 speedUp += speedUp;
                 speedUpPoint += speedUpPoint;
@@ -50,12 +50,12 @@ namespace Snake
             }
             Snake.Move(Snake.Side);
 
-            Crash();           
+            Crash();
             CanPressButton = true;
             Snake.Print();
         }
-       
-        private static void Crash()
+
+        private void Crash()
         {
             for (int i = 0; i < Snake.snakeBody.Count - 2; i++)
             {
