@@ -1,0 +1,6 @@
+C:\Users\realp\source\repos\essential\snake\Snake\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\realp\source\repos\essential\snake\Snake\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\realp\source\repos\essential\snake\Snake\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\realp\source\repos\essential\snake\Snake\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\realp\source\repos\essential\snake\Snake\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\realp\source\repos\essential\snake\Snake\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

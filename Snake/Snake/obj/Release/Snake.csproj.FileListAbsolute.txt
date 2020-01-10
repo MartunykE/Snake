@@ -1,0 +1,7 @@
+C:\Users\realp\source\repos\essential\snake\Snake\Snake\bin\Release\Snake.exe.config
+C:\Users\realp\source\repos\essential\snake\Snake\Snake\bin\Release\Snake.exe
+C:\Users\realp\source\repos\essential\snake\Snake\Snake\bin\Release\Snake.pdb
+C:\Users\realp\source\repos\essential\snake\Snake\Snake\obj\Release\Snake.csprojAssemblyReference.cache
+C:\Users\realp\source\repos\essential\snake\Snake\Snake\obj\Release\Snake.csproj.CoreCompileInputs.cache
+C:\Users\realp\source\repos\essential\snake\Snake\Snake\obj\Release\Snake.exe
+C:\Users\realp\source\repos\essential\snake\Snake\Snake\obj\Release\Snake.pdb
