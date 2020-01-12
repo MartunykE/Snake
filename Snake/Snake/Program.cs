@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 
 namespace Snake
@@ -7,68 +8,82 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-             
-            Field.CreateField();
-            Snake.CreateSnake();
-            Snake.Side = "left";
-            Game.StartGame();
-            Game.Crashed = false;
+            Field field = new Field();
+            Snake snake = new Snake("left");
+            Game game = new Game(field, snake, 200, 30, 4);
+            field.CreateField();
+            snake.CreateSnake();
+            game.StartGame();
+            game.Crashed = false;
+            Thread checkCrashThread = new Thread(() => PrintResult(snake, game));
+            checkCrashThread.Start();
+
             while (true)
             {
-                if (Game.Crashed)
+
+                if (game.Crashed)
                 {
                     break;
                 }
-                CheckButtons();
+                CheckButtons(game, snake);
             }
-            PrintResult();
             Console.ReadKey();
         }
-        public static void PrintResult()
+
+        public static void PrintResult(Snake snake, Game game)
         {
-            Console.SetCursorPosition(70, 5);
-            Console.WriteLine($"Your score = {Snake.snakeBody.Count}");
+            object block = new object();
+            while (true)
+            {
+                if (game.Crashed)
+                {
+                    Console.SetCursorPosition(70, 5);
+                    Console.WriteLine($"Your score = {snake.snakeBody.Count}");
+                    break;
+                }
+            }
+
         }
-        public static void CheckButtons()
+        public static void CheckButtons(Game game, Snake snake)
         {
             ConsoleKeyInfo key = Console.ReadKey();
-            Game.CanPressButton = false;
+            game.CanPressButton = false;
             switch (key.Key)
             {
                 case ConsoleKey.UpArrow:
                     {
-                        if (Snake.Side == "down")
+                        if (snake.Side == "down")
                         {
                             break;
                         }
-                        Snake.Side = "up";
+                        snake.Side = "up";
                         break;
                     }
                 case ConsoleKey.DownArrow:
                     {
-                        if (Snake.Side == "up")
+                        if (snake.Side == "up")
                         {
                             break;
                         }
-                        Snake.Side = "down";
+                        snake.Side = "down";
                         break;
                     }
                 case ConsoleKey.LeftArrow:
                     {
-                        if (Snake.Side == "right")
+                        if (snake.Side == "right")
                         {
                             break;
                         }
-                        Snake.Side = "left";
+                        snake.Side = "left";
                         break;
                     }
                 case ConsoleKey.RightArrow:
                     {
-                        if (Snake.Side == "left")
+                        if (snake.Side == "left")
                         {
                             break;
                         }
-                        Snake.Side = "right";
+                        snake.Side = "right";
                         break;
                     }
             }

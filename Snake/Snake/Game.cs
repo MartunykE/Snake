@@ -10,15 +10,27 @@ namespace Snake
     class Game
     {
         private Timer timer;
-        private int startSpeed = 200;
-        private int speedUp = 30;
-        private int speedUpPoint = 4;
-        private Point eatPoint = new Point();
-        private bool firstStart = true;
-        public bool Crashed { get; set; } = false;
-        public bool CanPressButton { get; set; } = true;
-
-
+        private int startSpeed;
+        private int speedUp;
+        private int speedUpPoint;
+        Field field;
+        Snake snake;
+        private Point eatPoint;
+        private bool firstStart;
+        public Game(Field field, Snake snake, int startSpeed, int speedUp, int speedUpPoint)
+        {
+            this.field = field;
+            this.snake = snake;
+            this.startSpeed = startSpeed;
+            this.speedUp = speedUp;
+            this.speedUpPoint = speedUpPoint;
+            eatPoint = new Point();
+            firstStart = true;
+            Crashed = false;
+            CanPressButton = true;
+        }
+        public bool Crashed { get; set; }
+        public bool CanPressButton { get; set; }
 
         public void StartGame()
         {
@@ -31,35 +43,37 @@ namespace Snake
         {
             if (firstStart)
             {
-                eatPoint = Field.GenerateEat();
+                eatPoint = field.GenerateEat();
                 firstStart = false;
             }
-            if (Snake.snakeBody.Count > speedUpPoint && (startSpeed - speedUp) > 0)
+            if (snake.snakeBody.Count > speedUpPoint && (startSpeed - speedUp) > 0)
             {
-
                 timer.Interval = startSpeed - speedUp;
                 speedUp += speedUp;
                 speedUpPoint += speedUpPoint;
-            }
-
-            Snake.Clear();
-            if (eatPoint.X == Snake.snakeBody[0].X && eatPoint.Y == Snake.snakeBody[0].Y)
+            } 
+            snake.Clear();            
+            if (eatPoint.X == snake.snakeBody[0].X && eatPoint.Y == snake.snakeBody[0].Y)
             {
-                Snake.AddPart(eatPoint);
-                eatPoint = Field.GenerateEat();
+                snake.AddPart(eatPoint);
+                eatPoint = field.GenerateEat();
             }
-            Snake.Move(Snake.Side);
+            snake.Move(snake.Side);
 
             Crash();
             CanPressButton = true;
-            Snake.Print();
+            if (!Crashed)
+            {
+                snake.Print();
+
+            }
         }
 
         private void Crash()
         {
-            for (int i = 0; i < Snake.snakeBody.Count - 2; i++)
+            for (int i = 0; i < snake.snakeBody.Count - 2; i++)
             {
-                if (Snake.snakeBody[0].X == Snake.snakeBody[i + 1].X && Snake.snakeBody[0].Y == Snake.snakeBody[i + 1].Y)
+                if (snake.snakeBody[0].X == snake.snakeBody[i + 1].X && snake.snakeBody[0].Y == snake.snakeBody[i + 1].Y)
                 {
                     Crashed = true;
                     timer.Stop();
@@ -67,7 +81,7 @@ namespace Snake
                     return;
                 }
             }
-            if (Snake.snakeBody[0].Y == 0 || Snake.snakeBody[0].Y == Field.Heigth - 1 || Snake.snakeBody[0].X == 0 || Snake.snakeBody[0].X == Field.Width - 1)
+            if (snake.snakeBody[0].Y == 0 || snake.snakeBody[0].Y == field.Heigth - 1 || snake.snakeBody[0].X == 0 || snake.snakeBody[0].X == field.Width - 1)
             {
                 Crashed = true;
                 timer.Stop();

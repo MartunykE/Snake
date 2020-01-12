@@ -22,7 +22,7 @@ namespace Snake
                 {
                     if (i == height - 1 || i == 0 || j == 0 || j == width - 1)
                     {
-                        Console.Write("*");
+                        Console.Write("%");
                     }
                     else
                     {
@@ -31,15 +31,13 @@ namespace Snake
                 }
                 Console.WriteLine();
             }
-            Console.SetCursorPosition(width + 5, 0);
-            Console.WriteLine("Rules: If snake has stopped, press any button");
         }
         public Point GenerateEat()
         {
             Random randomEat = new Random();
             Point eatPoint = new Point();
-            eatPoint.X = randomEat.Next(1, width - 1);
-            eatPoint.Y = randomEat.Next(1, height - 1);
+            eatPoint.X = randomEat.Next(2, width - 1);
+            eatPoint.Y = randomEat.Next(2, height - 1);
             Console.SetCursorPosition(eatPoint.X, eatPoint.Y);
             Console.Write("*");
             return eatPoint;

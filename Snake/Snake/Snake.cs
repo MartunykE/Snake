@@ -10,6 +10,11 @@ namespace Snake
     class Snake
     {
         public string Side { get; set; }
+        private object Block = new object();
+        public Snake(string side)
+        {
+            Side = side;
+        }
 
         public List<Point> snakeBody = new List<Point>();
         public void AddPart(Point eatPoint)
@@ -94,7 +99,7 @@ namespace Snake
             }
             // end move head
         }
-        public static void Clear()
+        public void Clear()
         {
             for (int i = 0; i < snakeBody.Count; i++)
             {
@@ -102,10 +107,12 @@ namespace Snake
                 Console.Write(" ");
             }
         }
-        public static void Print()
+        public void Print()
         {
+
             for (int i = 0; i < snakeBody.Count; i++)
             {
+
                 if (i == 0)
                 {
                     Console.SetCursorPosition(snakeBody[i].X, snakeBody[i].Y);
